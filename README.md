@@ -9,7 +9,8 @@ Build with:
 - React
 - React Hooks
 - Chakra UI
+- Firebase
 
 Next Steps:
 
-- Connect to firebase
+- Add Firebase Auth

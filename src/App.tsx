@@ -1,5 +1,7 @@
 import React from "react";
-import { Stack } from "@chakra-ui/core";
+import { Stack, Spinner, Flex } from "@chakra-ui/core";
+
+import { firebaseDb } from "./firebase";
 import { Shell } from "./components/Shell";
 import { TodoForm } from "./components/TodoForm";
 import { TodoItem } from "./components/TodoItem";
@@ -9,37 +11,31 @@ export type Todo = {
   isCompleted: boolean;
 };
 
-const TODOS: Todo[] = [
-  {
-    text: "Create Todo App",
-    isCompleted: true,
-  },
-  {
-    text: "Add unit tests",
-    isCompleted: true,
-  },
-  {
-    text: "Deploy to Vercel",
-    isCompleted: true,
-  },
-  {
-    text: "What to do next?",
-    isCompleted: false,
-  },
-];
+export type TodoList = {
+  [key: string]: Todo;
+};
 
 const App = () => {
-  const [todos, setTodos] = React.useState<Todo[]>(TODOS);
+  const [todos, setTodos] = React.useState<TodoList>({});
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setLoading(true);
+    firebaseDb.ref("todos").on("value", (snapshot) => {
+      setTodos(snapshot.val());
+      setLoading(false);
+    });
+  }, []);
 
   const addTodo = (todo: Todo) => {
-    const newTodos = [...todos, todo];
-    setTodos(newTodos);
+    firebaseDb.ref("todos").push(todo);
   };
 
-  const toggleTodo = (index: number) => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = !newTodos[index].isCompleted;
-    setTodos(newTodos);
+  const toggleTodo = (key: string) => {
+    firebaseDb.ref(`todos/${key}`).set({
+      ...todos[key],
+      isCompleted: !todos[key].isCompleted,
+    });
   };
 
   return (
@@ -47,15 +43,20 @@ const App = () => {
       <Shell>
         <TodoForm addTodo={addTodo} />
         <Stack spacing={4}>
-          {todos.map((todo, index) => (
+          {Object.keys(todos).map((key) => (
             <TodoItem
-              key={todo.text}
-              todo={todo}
-              index={index}
+              key={key}
+              id={key}
+              todo={todos[key]}
               toggleTodo={toggleTodo}
             />
           ))}
         </Stack>
+        {loading && (
+          <Flex justify="center">
+            <Spinner />
+          </Flex>
+        )}
       </Shell>
     </React.Fragment>
   );

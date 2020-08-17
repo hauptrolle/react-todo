@@ -6,13 +6,13 @@ import { Todo } from "../../App";
 
 type Props = {
   todo: Todo;
-  index: number;
-  toggleTodo: (index: number) => void;
+  id: string;
+  toggleTodo: (id: string) => void;
 };
 
 export const TodoItem = ({
   todo: { isCompleted, text },
-  index,
+  id,
   toggleTodo,
 }: Props) => {
   const getStatusIcon = () => {
@@ -22,7 +22,7 @@ export const TodoItem = ({
   return (
     <Flex alignItems="center">
       <IconButton
-        onClick={() => toggleTodo(index)}
+        onClick={() => toggleTodo(id)}
         colorScheme={isCompleted ? "green" : "gray"}
         aria-label="status"
         icon={getStatusIcon()}
