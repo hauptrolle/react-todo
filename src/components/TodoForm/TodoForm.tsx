@@ -10,36 +10,35 @@ type Props = {
 
 export const TodoForm = ({ addTodo }: Props) => {
   const [value, setValue] = React.useState("");
-  const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleButtonClick = () => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
     if (value !== "" && value.trim() !== "") {
       addTodo({
         text: value,
         isCompleted: false,
       });
       setValue("");
-      inputRef.current?.focus();
     } else {
       window.alert("Please add a taks text");
     }
   };
 
   return (
-    <Flex mb={4}>
+    <Flex as="form" mb={4} onSubmit={handleSubmit}>
       <Input
         id="todo"
         placeholder="Add todo ..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        ref={inputRef}
       />
       <IconButton
         aria-label="Add todo"
         colorScheme="orange"
         icon={<Icon as={FaPlus} />}
         ml={4}
-        onClick={handleButtonClick}
+        type="submit"
       >
         Add
       </IconButton>
