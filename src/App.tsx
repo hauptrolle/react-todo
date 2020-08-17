@@ -16,11 +16,11 @@ const TODOS: Todo[] = [
   },
   {
     text: "Add unit tests",
-    isCompleted: false,
+    isCompleted: true,
   },
   {
     text: "Deploy to Vercel",
-    isCompleted: false,
+    isCompleted: true,
   },
   {
     text: "What to do next?",
