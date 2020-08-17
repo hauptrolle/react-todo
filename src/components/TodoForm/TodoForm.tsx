@@ -9,6 +9,7 @@ type Props = {
 
 export const TodoForm = ({ addTodo }: Props) => {
   const [value, setValue] = React.useState("");
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
     if (value !== "" && value.trim() !== "") {
@@ -17,6 +18,7 @@ export const TodoForm = ({ addTodo }: Props) => {
         isCompleted: false,
       });
       setValue("");
+      inputRef.current?.focus();
     } else {
       window.alert("Please add a taks text");
     }
@@ -27,7 +29,9 @@ export const TodoForm = ({ addTodo }: Props) => {
       <Input
         id="todo"
         placeholder="Add todo ..."
+        value={value}
         onChange={(e) => setValue(e.target.value)}
+        ref={inputRef}
       />
       <Button colorScheme="teal" ml={4} onClick={handleButtonClick}>
         Add
