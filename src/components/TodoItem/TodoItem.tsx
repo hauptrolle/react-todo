@@ -27,6 +27,7 @@ export const TodoItem = ({
         aria-label="status"
         icon={getStatusIcon()}
         mr={4}
+        size="sm"
       />
       <Text
         color={isCompleted ? "gray.400" : "inherit"}

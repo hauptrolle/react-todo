@@ -26,7 +26,7 @@ export const TodoForm = ({ addTodo }: Props) => {
   };
 
   return (
-    <Flex as="form" mb={4} onSubmit={handleSubmit}>
+    <Flex as="form" mb={8} onSubmit={handleSubmit}>
       <Input
         id="todo"
         placeholder="Add todo ..."
