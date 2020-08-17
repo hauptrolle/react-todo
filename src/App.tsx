@@ -22,13 +22,21 @@ const App = () => {
   React.useEffect(() => {
     setLoading(true);
     firebaseDb.ref("todos").on("value", (snapshot) => {
-      setTodos(snapshot.val());
+      if (snapshot.val() !== null) {
+        setTodos(snapshot.val());
+      } else {
+        setTodos({});
+      }
       setLoading(false);
     });
   }, []);
 
   const addTodo = (todo: Todo) => {
     firebaseDb.ref("todos").push(todo);
+  };
+
+  const removeTodo = (key: string) => {
+    firebaseDb.ref(`todos/${key}`).remove();
   };
 
   const toggleTodo = (key: string) => {
@@ -49,6 +57,7 @@ const App = () => {
               id={key}
               todo={todos[key]}
               toggleTodo={toggleTodo}
+              removeTodo={removeTodo}
             />
           ))}
         </Stack>
