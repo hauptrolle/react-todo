@@ -2,7 +2,7 @@
 
 > The most basic react todo app. Build for #50reactprojects
 
-[Demo](https://react-todo-hauptrolle.vercel.app/)
+[Demo](https://react-todo.hauptrolle.vercel.app/)
 
 Build with:
 
