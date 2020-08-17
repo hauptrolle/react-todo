@@ -1,5 +1,6 @@
 import React from "react";
-import { Flex, Input, Button } from "@chakra-ui/core";
+import { Flex, Input, IconButton, Icon } from "@chakra-ui/core";
+import { FaPlus } from "react-icons/fa";
 
 import { Todo } from "../../App";
 
@@ -33,9 +34,15 @@ export const TodoForm = ({ addTodo }: Props) => {
         onChange={(e) => setValue(e.target.value)}
         ref={inputRef}
       />
-      <Button colorScheme="teal" ml={4} onClick={handleButtonClick}>
+      <IconButton
+        aria-label="Add todo"
+        colorScheme="orange"
+        icon={<Icon as={FaPlus} />}
+        ml={4}
+        onClick={handleButtonClick}
+      >
         Add
-      </Button>
+      </IconButton>
     </Flex>
   );
 };

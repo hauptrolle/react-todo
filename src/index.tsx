@@ -6,9 +6,17 @@ import theme from "@chakra-ui/theme";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+const customTheme = {
+  ...theme,
+  config: {
+    ...theme.config,
+    initialColorMode: "dark",
+  },
+};
+
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={customTheme}>
       <CSSReset />
       <App />
     </ChakraProvider>

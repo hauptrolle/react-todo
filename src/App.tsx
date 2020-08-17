@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Stack } from "@chakra-ui/core";
-import { Header } from "./components/Header";
+import { Stack } from "@chakra-ui/core";
+import { Shell } from "./components/Shell";
 import { TodoForm } from "./components/TodoForm";
 import { TodoItem } from "./components/TodoItem";
 
@@ -44,8 +44,7 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <Header />
-      <Container>
+      <Shell>
         <TodoForm addTodo={addTodo} />
         <Stack spacing={4}>
           {todos.map((todo, index) => (
@@ -57,7 +56,7 @@ const App = () => {
             />
           ))}
         </Stack>
-      </Container>
+      </Shell>
     </React.Fragment>
   );
 };
