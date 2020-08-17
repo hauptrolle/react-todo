@@ -18,7 +18,7 @@ export const Shell = ({ children }: Props) => {
         {children}
       </Container>
       <Container p={4} fontSize="sm" textAlign="center">
-        Build with React & Chakra UI. Checkout on{" "}
+        Build with React & Chakra UI. Check it out on{" "}
         <Link
           color="orange.300"
           href="https://github.com/hauptrolle/react-todo"
