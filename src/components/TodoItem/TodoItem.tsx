@@ -1,8 +1,20 @@
 import React from "react";
 import { Flex, Text, IconButton, Icon } from "@chakra-ui/core";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaTimes } from "react-icons/fa";
 
-export const TodoItem = () => {
+import { Todo } from "../../App";
+
+type Props = {
+  todo: Todo;
+  index: number;
+  toggleTodo: (index: number) => void;
+};
+
+export const TodoItem = ({
+  todo: { isCompleted, text },
+  index,
+  toggleTodo,
+}: Props) => {
   return (
     <Flex
       p={4}
@@ -11,8 +23,12 @@ export const TodoItem = () => {
       alignItems="center"
       justify="space-between"
     >
-      <Text>Todo Item</Text>
-      <IconButton aria-label="checkmark" icon={<Icon as={FaCheck} />} />
+      <Text as={isCompleted ? "s" : "p"}>{text}</Text>
+      <IconButton
+        onClick={() => toggleTodo(index)}
+        aria-label="checkmark"
+        icon={isCompleted ? <Icon as={FaTimes} /> : <Icon as={FaCheck} />}
+      />
     </Flex>
   );
 };
