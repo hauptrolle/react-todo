@@ -24,7 +24,7 @@ export const TodoItem = ({
       <IconButton
         onClick={() => toggleTodo(index)}
         colorScheme={isCompleted ? "green" : "gray"}
-        aria-label="checkmark"
+        aria-label="status"
         icon={getStatusIcon()}
         mr={4}
       />
