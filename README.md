@@ -1,8 +1,8 @@
 # React Todo 👌
 
-> The most basic react todo app. Build for #50reactprojects
+> The most basic react todo app. Build for #50reactprojects. Check out the [Demo](https://react-todo.hauptrolle.vercel.app/)
 
-[Demo](https://react-todo.hauptrolle.vercel.app/)
+![App](./screen.png)
 
 Build with:
 
@@ -10,7 +10,4 @@ Build with:
 - React Hooks
 - Chakra UI
 - Firebase
-
-Next Steps:
-
-- Add Firebase Auth
+- Firebase Auth
