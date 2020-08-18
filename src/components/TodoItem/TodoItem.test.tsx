@@ -10,7 +10,7 @@ describe("TodoItem Component", () => {
     const { getByText } = render(
       <TodoItem
         todo={{ text: "Test Todo", isCompleted: false }}
-        index={1}
+        id={1}
         toggleTodo={mockToggle}
       />
     );
@@ -23,12 +23,12 @@ describe("TodoItem Component", () => {
     const { getByLabelText } = render(
       <TodoItem
         todo={{ text: "Test Todo", isCompleted: false }}
-        index={1}
+        id={1}
         toggleTodo={mockToggle}
       />
     );
 
-    fireEvent.click(getByLabelText("status"));
+    fireEvent.click(getByLabelText("todo status"));
     expect(mockToggle).toHaveBeenCalledWith(1);
   });
 });
